@@ -110,21 +110,10 @@ h2{font-family:var(--display);font-weight:500;font-size:17px;margin:0}
 
   <div class="progress" id="progress" aria-live="polite">
     <div class="bar" aria-hidden="true"><i id="bar"></i></div>
-    <span class="count" id="count">0 из 3</span>
+    <span class="count" id="count">0 из 4</span>
   </div>
 
   <ul class="chats" id="chats"></ul>
-
-  <div class="manual">
-    <div class="ico" aria-hidden="true">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M18 8v6M15 11h6"/></svg>
-    </div>
-    <div class="info">
-      <div class="name">❗️Преподы Власова❗️«Взмах»</div>
-      <div class="desc">Главный чат преподавателей. Ссылки нет: в него вас добавит завуч.</div>
-      <div class="hand">тут ничего нажимать не нужно :)</div>
-    </div>
-  </div>
 
   <section class="how" aria-labelledby="how-h">
     <h2 id="how-h">Если кнопка не открывает чат</h2>
@@ -149,6 +138,7 @@ h2{font-family:var(--display);font-weight:500;font-size:17px;margin:0}
 (function(){
   /* Чтобы добавить или поменять чат — правьте этот список. */
   var CHATS = [
+    {id:'prepody',    name:'❗️Преподы Власова❗️«Взмах»', desc:'Главный чат преподавателей', url:'https://max.ru/join/dJZ34dp3pVa1vU6nZyMXR0VCebnJYkjHDfjFAFPWppo'},
     {id:'raspisanie', name:'Расписание ВЗМАХ Власова', desc:'Расписание уроков и замены', url:'https://max.ru/join/7gziUSV9BOmCnPfdcB5xp94Tg_gByHbybQ_5X1cxjlY'},
     {id:'ssylki',     name:'ССЫЛКИ ВЗМАХ МСК',         desc:'Рабочие таблицы, формы и документы', url:'https://max.ru/join/zT5UjsxpZL26yG_a6yeyeRxSyTQztV27xmsewi5sX_8'},
     {id:'tehnika',    name:'Компьютеры, принтеры, доски и др', desc:'Если сломалась или не работает техника', url:'https://max.ru/join/VxbBRPwodBems-NOCwLzhfi0qbykJa58_Gt1DVKNZoc'}
@@ -204,8 +194,7 @@ h2{font-family:var(--display);font-weight:500;font-size:17px;margin:0}
 
   document.getElementById('copy-all').addEventListener('click', function(){
     var text = 'Добро пожаловать в «Взмах»! Вступите, пожалуйста, в рабочие чаты:\n\n' +
-      CHATS.map(function(c, i){ return (i + 1) + '. ' + c.name + '\n' + c.url; }).join('\n\n') +
-      '\n\nВ чат «Преподы Власова» добавит завуч.';
+      CHATS.map(function(c, i){ return (i + 1) + '. ' + c.name + '\n' + c.url; }).join('\n\n');
     function fallback(){ toast('Не получилось скопировать: выделите ссылки вручную'); }
     try { navigator.clipboard.writeText(text).then(function(){ toast('Приглашение скопировано'); }, fallback); } catch(e){ fallback(); }
   });
